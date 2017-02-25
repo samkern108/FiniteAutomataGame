@@ -40,7 +40,15 @@ public class State : MonoBehaviour {
 	public void SetType(type t)
 	{
 		myType = t;
-		ColorSprite (myType);
+
+		switch (t) {
+		case type.accept:
+			myRenderer.color = Palette.customGreen;
+			break;
+		case type.reject:
+			myRenderer.color = Palette.customRed;
+			break;
+		}
 	}
 
 	public void Repaint(Paintbrush.brushType t)
@@ -68,18 +76,6 @@ public class State : MonoBehaviour {
 		startArrowPosition.x -= 1.5f;
 		startArrowObject.transform.position = startArrowPosition;
 		startArrowObject.transform.parent = this.transform;
-	}
-
-	void ColorSprite(type t)
-	{
-		switch (t) {
-		case type.accept:
-			myRenderer.color = new Color(.21f, 0.85f, .24f, 1f);
-			break;
-		case type.reject:
-			myRenderer.color = new Color(.796f, .322f, .322f, 1f);
-			break;
-		}
 	}
 
 	public void SetSelected(bool selected)
